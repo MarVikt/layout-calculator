@@ -61,7 +61,7 @@ const askData = {
       let sum = elem.querySelector('input[type=text]');
       if (check.checked) {
         if (label.textContent.includes('%')) {
-          askData.services[label.textContent] = +fullAmount.value * +sum.value / 100;
+          askData.services[label.textContent] = askData.fullPrice * +sum.value / 100;
         } else {
           askData.services[label.textContent] = +sum.value;
         }
