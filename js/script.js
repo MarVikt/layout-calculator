@@ -1,4 +1,4 @@
-const title = document.getElementsByTagName('h1')[0];
+// const title = document.getElementsByTagName('h1')[0];
 // const buttons = document.getElementsByClassName('handler_btn');
 const buttonPlus = document.querySelector('.screen-btn');
 const otherItems = document.querySelectorAll('.other-items');
@@ -16,18 +16,12 @@ const amountWithRollback = document.getElementById('total-count-rollback');
 let screens = document.querySelectorAll('.screen');
 
 const askData = {
-  title: '',
   screens: [], 
   services: {}, 
   rollback: 0,
   allServicePrices: 0, 
   fullPrice: 0, 
   count: 0,
-
-  getTitle: function (str) {
-    str = str.trim().toLowerCase();
-    return str[0].toUpperCase() + str.substring(1);
-  },
 
   addScreenBlock: function () {
     let newScreen = screens[0].cloneNode(true);
@@ -105,8 +99,6 @@ const askData = {
   },
 
   start: function () {
-    askData.title = askData.getTitle(title.textContent);
-
     buttonPlus.addEventListener('click',askData.addScreenBlock);
     rollback.addEventListener('input',askData.addRollback);
     rollback.addEventListener('change',askData.addRollback);
