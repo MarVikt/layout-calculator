@@ -1,4 +1,4 @@
-// const title = document.getElementsByTagName('h1')[0];
+const title = document.getElementsByTagName('h1')[0];
 // const buttons = document.getElementsByClassName('handler_btn');
 const buttonPlus = document.querySelector('.screen-btn');
 const otherItems = document.querySelectorAll('.other-items');
@@ -31,6 +31,7 @@ const askData = {
   },
 
   addScreens: function () {
+    let screensRight = true;
     askData.screens.length = 0;
     askData.count = 0;
     screens.forEach(function (elem,index) {
@@ -46,11 +47,14 @@ const askData = {
           askData.count += numScreens;
         } else {
           alert('Не заполнено количество экранов');
+          screensRight = false;
         }
       } else {
         alert('Не заполнен тип экранов');
+        screensRight = false;
       }
     });
+    return screensRight;
   },
 
   addServices: function () {
@@ -75,30 +79,32 @@ const askData = {
   },
 
   calculate: function () {
-    askData.addScreens();
-    askData.fullPrice = 0;
-    askData.fullPrice = askData.screens.reduce(function(sum,item) {
-      return sum + item.amount;
-    },0);
-
-    fullAmount.value = askData.fullPrice;
-    countScreens.value = askData.count;
-
-    askData.addServices();
-    askData.allServicePrices = 0;
-    for (let key in askData.services) {
-      askData.allServicePrices += askData.services[key];
-    } 
-
-    servicesAmount.value = askData.allServicePrices;
-    totalAmount.value = askData.fullPrice + askData.allServicePrices;
-    amountWithRollback.value = Math.round((askData.fullPrice + askData.allServicePrices) * (1 - askData.rollback / 100));
-
+    if (askData.addScreens()) {
+      askData.fullPrice = 0;
+      askData.fullPrice = askData.screens.reduce(function(sum,item) {
+        return sum + item.amount;
+      },0);
+  
+      fullAmount.value = askData.fullPrice;
+      countScreens.value = askData.count;
+  
+      askData.addServices();
+      askData.allServicePrices = 0;
+      for (let key in askData.services) {
+        askData.allServicePrices += askData.services[key];
+      } 
+  
+      servicesAmount.value = askData.allServicePrices;
+      totalAmount.value = askData.fullPrice + askData.allServicePrices;
+      amountWithRollback.value = Math.round((askData.fullPrice + askData.allServicePrices) * (1 - askData.rollback / 100));
+  
+    }
     // console.log(askData);
-
   },
 
   start: function () {
+    document.title = title.textContent;
+
     buttonPlus.addEventListener('click',askData.addScreenBlock);
     rollback.addEventListener('input',askData.addRollback);
     rollback.addEventListener('change',askData.addRollback);
