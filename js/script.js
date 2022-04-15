@@ -159,7 +159,7 @@ const askData = {
       // заменим кнопку Рассчитать на кнопку Сброс
       buttonCalculate.style.display = "none";
       buttonReset.style.display = "block";
-      buttonReset.addEventListener("click", askData.reset);
+      buttonReset.addEventListener("click",askData.reset);
     }
   },
 
@@ -187,6 +187,7 @@ const askData = {
     cmsVariants.style.display = 'none';
     cmsVariants.querySelector(".main-controls__input").style.display = "none";
     cmsOtherInput.value = "";
+    cmsSelect.selectedIndex = 0;
 
     rollback.value = 0;
     rangeValue.textContent = "0%";
