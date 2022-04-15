@@ -204,7 +204,7 @@ const askData = {
     // заменим кнопку Сброс на кнопку Рассчитать
     buttonReset.style.display = "none";
     buttonCalculate.style.display = "block";
-    cmsOpen.addEventListener("click", this.cmsChoice);
+    cmsOpen.addEventListener("click", askData.cmsChoice);
     buttonCalculate.addEventListener("click", askData.calculate);
   },
 
